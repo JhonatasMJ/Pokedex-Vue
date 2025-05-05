@@ -2,6 +2,8 @@
 
 Projeto para treinar componentes e funções do VUE3
 
+Acesse: https://pokedex-jhow.netlify.app/
+
 
 
 ## Screenshots
