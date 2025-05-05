@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import CardPoke from '@/components/CardPoke.vue';
 import {Input} from '@/components/ui/input';
+import Pwa from '@/components/PWA.vue';
 
 const pokemons = ref([]);
 const procurarPokemon = ref('');
@@ -41,6 +42,7 @@ const verDetalhes = (pokemon) => {
 
 <template>
   <main class="max-w-7xl px-4 mx-auto py-6">
+    <Pwa/>
     <h1 class="text-4xl font-bold mb-4">Pokédex</h1>
     <Input
       v-model="procurarPokemon"
