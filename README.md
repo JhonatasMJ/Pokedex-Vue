@@ -1,4 +1,4 @@
-# Pokedex com VUE 3 📊📊
+# Pokedex com VUE 3 ⚡
 
 Projeto para treinar componentes e funções do VUE3
 
