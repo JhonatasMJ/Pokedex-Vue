@@ -18,7 +18,6 @@ onMounted(async () => {
     const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100');
     const data = await res.json();
 
-    // Buscar detalhes para cada Pokémon
     const detalhes = await Promise.all(
       data.results.map(async (pokemon) => {
         const resp = await fetch(pokemon.url);
@@ -58,7 +57,7 @@ const verDetalhes = (pokemon) => {
   <img class="w-12 h-12 animate__rotateIn animate__infinite	infinite animate_animated  " src="../assets/pokeboll.png" alt="Logo">
   <h1 class="text-4xl font-bold">Pokédex</h1>
 </div>
-    <p class="mb-4 text-zinc-800 text-md">Encontre seus Pokémon favoritos</p>
+    <p class="mb-4 text-zinc-800 text-md">Encontre seus Pokémon favoritos.</p>
 
     <div class="relative w-full mb-6 items-center">
     <Input 
