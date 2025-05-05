@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const pokemon = ref(null);
-const loading = ref(false);
+let loading = ref(false);
 
 onMounted(async () => {
   try {
