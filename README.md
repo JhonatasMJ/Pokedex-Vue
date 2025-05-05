@@ -1,5 +1,24 @@
-# Vue 3 + Vite
+# Pokedex com VUE 3 📊📊
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Projeto para treinar componentes e funções do VUE3
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+
+
+## Screenshots
+
+![App Screenshot](/src/assets/print.PNG)
+
+
+## Tecnologias Utilizadas 💻
+
+- Vue
+- JavaScript
+- Tailwind
+- ShadcnUi Vue
+
+## Como Usar❓
+
+    1. Clone este repositório em sua máquina local.
+    2. Execute o comando "npm install" no terminal
+    3. Digite o comando "npm run dev" para rodar o projeto
+
