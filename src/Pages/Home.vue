@@ -58,7 +58,6 @@ const verDetalhes = (pokemon) => {
   <h1 class="text-4xl font-bold">Pokédex</h1>
 </div>
     <p class="mb-4 text-zinc-800 text-md">Encontre seus Pokémon favoritos.</p>
-
     <div class="relative w-full mb-6 items-center">
     <Input 
     v-model="procurarPokemon"

@@ -23,8 +23,7 @@ onMounted(async () => {
 
 <template>
   <div v-if="pokemon" class="max-w-4xl mx-auto py-10 px-4 " 
-  :class="loading ? '' : 'animate__bounce animate__animated'"
-  >
+  :class="loading ? '' : 'animate__bounce animate__animated'">
     <h1 class="text-3xl font-bold capitalize mb-4">{{ pokemon.name }}</h1>
     <img
       :src="pokemon.sprites.other['official-artwork'].front_default"

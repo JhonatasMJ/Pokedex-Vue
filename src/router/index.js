@@ -9,7 +9,6 @@ const routes = [
     children: [
       { path: "", component: Home, meta: { title: "Home" }},
       { path: '/pokemon/:name', props: true, name: 'Pokemon', component: Pokemon, meta:{ title: "Detalhes" } },
-  
     ],
   },
 ];
