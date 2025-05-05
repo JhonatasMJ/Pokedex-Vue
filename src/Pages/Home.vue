@@ -1,56 +1,61 @@
 <script setup>
-import Navbar from "@/components/Navbar.vue";
+import { ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import CardPoke from '@/components/CardPoke.vue';
+import {Input} from '@/components/ui/input';
 
-import { Button } from "@/components/ui/button";
-import CardPoke from "@/components/CardPoke.vue";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+const pokemons = ref([]);
+const procurarPokemon = ref('');
+const router = useRouter();
+const loading = ref(false);
 
-import { Input } from "@/components/ui/input";
+onMounted(async () => {
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100');
+  const data = await res.json();
+  try {
+    loading.value = true;
+    pokemons.value = data.results.map((pokemon) => {
+    const id = pokemon.url.split('/').filter(Boolean).pop();
+    return {
+      ...pokemon,
+      id,
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+    };
+    });
+  } finally {
+    loading.value = false;
+  }
+});
+
+const pokemonsFiltrados = computed(() => {
+  if (!procurarPokemon.value) return pokemons.value;
+  return pokemons.value.filter((p) =>
+    p.name.toLowerCase().includes(procurarPokemon.value.toLowerCase())
+  );
+});
+
+const verDetalhes = (pokemon) => {
+  router.push({ name: 'Pokemon', params: { name: pokemon.name } });
+};
 </script>
 
 <template>
   <main class="max-w-7xl px-4 mx-auto py-6">
     <h1 class="text-4xl font-bold mb-4">Pokédex</h1>
-    <p class="text-gray-600 mb-6">
-      Explore seu catálogo de Pokémon com a Pokédex interativa
-    </p>
+    <Input
+      v-model="procurarPokemon"
+      placeholder="Buscar Pokémon"
+      class="mb-4"
+    />
 
-    <div class="flex flex-col md:flex-row gap-4 mb-8">
-      <div class="relative w-1/2">
-        <Input
-          type="text"
-          v-model="searchQuery"
-          placeholder="Buscar Pokémon..."
-        />
-      </div>
-
-      <Select >
-        <SelectTrigger class="w-[180px ]">
-          <SelectValue placeholder="Select a fruit" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Fruits</SelectLabel>
-            <SelectItem value="apple"> Apple </SelectItem>
-            <SelectItem value="banana"> Banana </SelectItem>
-            <SelectItem value="blueberry"> Blueberry </SelectItem>
-            <SelectItem value="grapes"> Grapes </SelectItem>
-            <SelectItem value="pineapple"> Pineapple </SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-
-      <Button @click="resetFilters" class="px-4 py-2"> Limpar filtros </Button>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <CardPoke
+        v-for="pokemon in pokemonsFiltrados"
+        :key="pokemon.name"
+        :pokemon="pokemon"
+        @select="verDetalhes"
+        :loading="loading"
+      />
     </div>
-
-    <CardPoke />
   </main>
 </template>
