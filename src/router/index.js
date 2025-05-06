@@ -8,10 +8,16 @@ const routes = [
     component: Home,
     children: [
       { path: "", component: Home, meta: { title: "Home" }},
-      { path: '/pokemon/:name', props: true, name: 'Pokemon', component: Pokemon, meta:{ title: "Detalhes" } },
     ],
   },
-];
+  {
+    path: '/pokemon/:name',
+    name: 'Pokemon',
+    props: true,
+    component: Pokemon,
+    meta: { title: 'Detalhes' },
+  },
+  ];
 
 const router = createRouter({
   history: createWebHistory(),
